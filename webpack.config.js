@@ -1,6 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
- 
+var bourbon = require('bourbon').includePaths;
+var neat = require('bourbon-neat').includePaths
+
 module.exports = {
   entry: './src/index.js',
   output: { path: 'dist', publicPath: '/', filename: 'bundle.js' },
@@ -21,4 +23,7 @@ module.exports = {
       
     ]
   },
+  sassLoader: {
+    includePaths: [bourbon, neat]
+  }
 };   

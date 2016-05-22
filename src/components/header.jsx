@@ -4,7 +4,7 @@ export default class Header extends React.Component {
 
   render() {
     return (
-      <div>header</div>
+      <div className='header'>header</div>
     );
   }
 }

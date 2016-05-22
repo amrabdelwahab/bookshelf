@@ -4,7 +4,7 @@ export default class Toolbar extends React.Component {
 
   render() {
     return (
-      <div>Toolbar</div>
+      <div className='toolbar'>Toolbar</div>
     );
   }
 }
