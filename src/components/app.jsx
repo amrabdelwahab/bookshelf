@@ -10,7 +10,10 @@ export default class App extends React.Component {
      <div className='app'>
       <Header/>
       <Toolbar/>
-      <Bookshelf/>
+      <div className='main-panel'>
+        <div className='searchbar'>search</div>
+        <Bookshelf/>
+      </div>
      </div>
       )
   }

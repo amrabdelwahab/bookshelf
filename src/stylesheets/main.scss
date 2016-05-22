@@ -1,22 +1,14 @@
 @import "bourbon";
 @import "neat";
+@import "_app";
+@import "_header";
+@import "_toolbar";
+@import "_searchbar";
+@import "_bookshelf";
 
-div.container {
-  @include outer-container;
+body {
+  background-color: #966F33;
+  color: white;
 }
 
-div.header {
-  @include row();
-  border: 1px solid #ccc;
-  padding: 10px;
-}
 
-div.toolbar {
-  @include span-columns(4);
-  border: 1px solid #ccc;
-}
-
-div.bookshelf {
-  @include span-columns(8);
-  border: 1px solid #ccc;
-}

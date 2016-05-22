@@ -1,0 +1,12 @@
+div.bookshelf {
+  @include span-columns(8 of 8);
+  border: 1px solid #ccc;
+  padding: 3% 3% 0 3%  ;
+  div.book{
+    @include span-columns(2 of 8);
+    @include omega(4n);
+    border: 1px solid #ccc;
+    font-size: 30px;
+    margin-bottom: 3%;
+  }
+}

@@ -1,0 +1,4 @@
+div.toolbar {
+  @include span-columns(4);
+  border: 1px solid #ccc;
+}

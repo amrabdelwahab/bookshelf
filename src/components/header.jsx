@@ -4,7 +4,9 @@ export default class Header extends React.Component {
 
   render() {
     return (
-      <div className='header'>header</div>
+      <div className='header'>
+        <h1> Bookshelf </h1>
+      </div>
     );
   }
 }

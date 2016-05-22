@@ -1,0 +1,7 @@
+div.app {
+  @include outer-container(90%);
+}
+
+div.main-panel {
+  @include span-columns(8);
+}
