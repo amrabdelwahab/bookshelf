@@ -2,3 +2,24 @@ div.toolbar {
   @include span-columns(4);
   border: 1px solid #ccc;
 }
+div.forms-panel{
+  form.add-book-form {
+    padding: 2%;
+    @include span-columns(4 of 4);
+
+    .title {
+      @include span-columns(2 of 4);
+    }
+
+    .author {
+      @include span-columns(2 of 4);
+    }
+
+    .submit {
+      @include span-columns(4 of 4);
+
+    }
+
+
+  }
+}
