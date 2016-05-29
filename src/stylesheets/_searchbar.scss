@@ -1,16 +1,18 @@
-input.search {
-  @include span-columns(7 of 8);
-  background: #838ba2;
-  margin: 0%;
-  height: 30px;
-  font-size: 20px;
-  color: white;
-  border: 1px solid #838ba2;
-}
+div.searchbar{
+  input.search {
+    @include span-columns(3 of 8);
+    background: #a7abb8;
+    float: right;
+    font-size: 20px;
+    color: white;
+    border: 1px solid #838ba2;
+    margin: 5px;
+  }
+  .seach-icon {
+    border: 1px solid #838ba2;
+    float: right;
+    width: 25px;
+    padding: 10px 5px 5px 5px;
+  }
 
-button.addBook {
-  @include span-columns(1 of 8);
-  height: 30px;
-  margin: 0%;
 }
-

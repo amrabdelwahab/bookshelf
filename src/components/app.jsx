@@ -26,9 +26,7 @@ export default class App extends React.Component {
      <div className='app'>
       <Header/>
        <div className='main-panel'>
-        <input className='search' placeholder='Search...'/>
-        <span className='ion-search'/>
-        <button className='addBook ion-plus'></button>
+        <Searchbar/>
         <Bookshelf saveBook={this.saveBook.bind(this)} books={this.state.books}/>
       </div>
      </div>

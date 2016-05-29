@@ -3,6 +3,7 @@ ul.bookshelf {
   @include span-columns(12 of 12);
   border: 1px solid #ccc;
   padding: 3% 3% 0 3%  ;
+  background: #f2f2f2;
   form.add-book-form {
     @include span-columns(3 of 12)
     font-family: 'roboto';
