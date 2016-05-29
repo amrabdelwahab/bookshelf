@@ -2,9 +2,10 @@ div.header {
   @include row();
   border: 1px solid #ccc;
   margin-bottom: 1%;
+  background: #f2f2f2;
   
   h1 {
+
     text-align: center;
-    font-size: 56px;
-  }
+    color: #838ba2;  }
 }

@@ -3,5 +3,7 @@ div.app {
 }
 
 div.main-panel {
-  @include span-columns(8);
+  @include span-columns(12);
+  border: 1px solid #ccc;
+  background: #f2f2f2;
 }

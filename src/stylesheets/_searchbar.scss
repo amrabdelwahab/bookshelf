@@ -1,5 +1,16 @@
-div.searchbar {
-  @include span-columns(8 of 8);
-  border: 1px solid #ccc;
-  margin-bottom: 1%;
+input.search {
+  @include span-columns(7 of 8);
+  background: #838ba2;
+  margin: 0%;
+  height: 30px;
+  font-size: 20px;
+  color: white;
+  border: 1px solid #838ba2;
 }
+
+button.addBook {
+  @include span-columns(1 of 8);
+  height: 30px;
+  margin: 0%;
+}
+

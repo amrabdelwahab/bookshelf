@@ -1,10 +1,50 @@
 @import "bourbon";
 @import "neat";
-@import "_app";
-@import "_header";
-@import "_toolbar";
-@import "_searchbar";
-@import "_bookshelf";
+@import "icons/scss/ionicons";
 
+@import "app";
+@import "header";
+@import "searchbar";
+@import "bookshelf";
 
+@include font-face('Merriweather', '/src/fonts/Merriweather-Regular')
+@include font-face('Roboto', '/src/fonts/Roboto-Regular')
+body {
+  font-size: 14px;
+  h1 {
+    color: white;
+    font: 'Merriweather';
+    font-size: 40px;
+    font-weight: normal;
+  }
 
+  h2 {
+    color: white;
+    font: 'Merriweather';
+    font-size: 26px;
+    font-weight: normal;
+  }
+
+  h3 {
+    color: white;
+    font-family: 'Merriweather';
+    font-size: 21px;
+    font-weight: normal;
+  }
+
+  h4 {
+    color: white;
+    font: 'Merriweather';
+    font-size: 18px;
+    font-weight: normal;
+  }
+
+  ::-webkit-input-placeholder {
+   color: white; 
+
+ }
+  input::-moz-placeholder { color: white; } /* firefox 19+ */
+  :-ms-input-placeholder { color: white; } /* ie */
+  input:-moz-placeholder { color: white; }
+
+}

@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from './header.jsx';
-import Toolbar from './toolbar.jsx';
 import Bookshelf from './bookshelf.jsx';
 
 
@@ -11,8 +10,9 @@ export default class App extends React.Component {
 
     this.state = {
       books: {},
-      tags: {}
+      tags: ['ruby', 'design']
     };
+    console.log(this.state.tags);
   }
 
   saveBook(book) {
@@ -25,10 +25,11 @@ export default class App extends React.Component {
     return (
      <div className='app'>
       <Header/>
-      <Toolbar saveBook={this.saveBook.bind(this)} />
-      <div className='main-panel'>
-        <div className='searchbar'>search</div>
-        <Bookshelf/>
+       <div className='main-panel'>
+        <input className='search' placeholder='Search...'/>
+        <span className='ion-search'/>
+        <button className='addBook ion-plus'></button>
+        <Bookshelf saveBook={this.saveBook.bind(this)} books={this.state.books}/>
       </div>
      </div>
       )

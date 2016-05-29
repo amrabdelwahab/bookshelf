@@ -1,12 +1,79 @@
-div.bookshelf {
-  @include span-columns(8 of 8);
+ul.bookshelf {
+  margin:0px;
+  @include span-columns(12 of 12);
   border: 1px solid #ccc;
   padding: 3% 3% 0 3%  ;
-  div.book{
-    @include span-columns(2 of 8);
+  form.add-book-form {
+    @include span-columns(3 of 12)
+    font-family: 'roboto';
+    border: 1px solid #ccc;
+    margin-bottom: 3%;
+    background: #ff7c67;
+    input.title {
+      @include span-columns(3 of 3);
+      margin-top: 0%;
+      color: white;
+      background: #d05a47;
+      height: 40px;
+      border: 1px solid #f37622;
+          }
+    input.author {
+      @include span-columns(3 of 3);
+      margin-top: 0%;
+      color: white;
+      background: #ff7c67;
+      height: 25px;
+      border: 1px solid #f37622;
+    }
+  
+    input.book-uploader {
+      @include span-columns(3 of 3);
+      background: #ff7c67;
+      color: white;
+      margin-right: 0%;
+      height: 45px;
+      border: 1px solid #f37622;
+    }
+    input.submit {
+      float: right;
+      background: white;
+      color: #ff7c67;
+      margin-right: 0%;
+      border: 1px solid #f37622;
+    }
+    
+  }
+  
+  li.book {
+    @include span-columns(3 of 12);
     @include omega(4n);
     border: 1px solid #ccc;
-    font-size: 30px;
     margin-bottom: 3%;
+    background: #838ba2;
+    color: white;
+
+    h3.book-title {
+      padding: 2%;
+      margin-top: 0%;
+      background: #747d96;
+    }
+    div.details {
+      padding-left: 2%;
+      font-family: 'roboto';
+    }
+   
+    div.author {
+      text-align: center;
+    }
+
+    div.tag-detail {
+      display: inline-block;
+      white-space: nowrap;
+      background : #e5e5e5;
+      color: #747d96;
+      border: 1px solid #747d96;
+      margin: 2px;
+      padding: 5px;
+    }
   }
 }
