@@ -1,18 +1,24 @@
 div.searchbar{
   input.search {
-    @include span-columns(3 of 8);
+    @include span-columns(2 of 8);
     background: #a7abb8;
-    float: right;
+    float: left;
     font-size: 20px;
     color: white;
-    border: 1px solid #838ba2;
-    margin: 5px;
+    border: 2px solid #838ba2;
+    margin: 0px;
+    padding: 6px;
+    height: 35px;
   }
   .seach-icon {
-    border: 1px solid #838ba2;
-    float: right;
-    width: 25px;
-    padding: 10px 5px 5px 5px;
+    height: 35px;
+    border-right: 2px solid #838ba2;
+    float: left;
+    width: 35px;
+    padding: 10px;
+    color:    #666;
+    opacity:  1;
+    background: #747d96;
   }
 
 }
