@@ -1,0 +1,46 @@
+form.add-book-form {
+  @include span-columns(3 of 12)
+  font-family: 'roboto';
+  border: 1px solid #ccc;
+  margin-bottom: 3%;
+  background: #f2f2f2;
+  height: 160px;
+  position:relative;
+  input.title {
+    @include span-columns(3 of 3);
+    margin-top: 0%;
+    
+    background: #e6e6e6;
+    height:  50px;
+    border: 1px solid #f2f2f2;
+        }
+  input.author {
+    @include span-columns(3 of 3);
+    margin-top: 0%;
+    background: #f2f2f2;
+    height: 50px;
+    text-align: center;
+    border: 1px solid #f2f2f2;
+  }
+
+  input.book-uploader {
+    @include span-columns(3 of 3);
+    background: #f2f2f2;
+    color: #838ba2;
+    margin-right: 0%;
+    bottom:0px;
+    left:0px;
+    position:absolute;
+    border: 1px solid #f2f2f2;
+  }
+  input.submit {
+    background: white;
+    color: #838ba2;
+    margin-right: 0%;
+    border: 1px solid #838ba2;
+    position:absolute;
+    bottom:0px;
+    right:0px;
+  }
+  
+}

@@ -6,6 +6,8 @@
 @import "header";
 @import "searchbar";
 @import "bookshelf";
+@import "addbookform";
+@import "book";
 
 @include font-face('Merriweather', '/src/fonts/Merriweather-Regular')
 @include font-face('Roboto', '/src/fonts/Roboto-Regular')
@@ -37,23 +39,6 @@ body {
     font: 'Merriweather';
     font-size: 18px;
     font-weight: normal;
-  }
-
-  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color:    #666;
-    opacity:  1;
-  }
-  ::-moz-placeholder { /* Firefox 19+ */
-    color:    #666;
-    opacity:  1;
-  }
-  :-ms-input-placeholder { /* IE 10+ */
-    color:    #666;
-    opacity:  1;
-  }
-  :-moz-placeholder { /* Firefox 18- */
-    color:    #666;
-    opacity:  1;
   }
 
  }

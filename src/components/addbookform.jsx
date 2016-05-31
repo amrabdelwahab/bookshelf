@@ -20,7 +20,7 @@ export default class AddBookForm extends React.Component {
       <form onSubmit={this.createBook.bind(this)} className='add-book-form'>
         <input type='text' required ref='title' className='title' placeholder='Book title'/>
         <input type='text' ref='author' className='author' placeholder='Book Author'/>
-        <input type='file' ref='book-file' className='book-uploader' />
+        <input type='file' required ref='book-file' className='book-uploader' />
         <input type='submit' className='submit' value='Add book'/>
       </form>
     );

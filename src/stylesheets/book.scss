@@ -1,0 +1,39 @@
+li.book {
+  @include span-columns(3 of 12);
+  @include omega(4n);
+  border: 1px solid #ccc;
+  margin-bottom: 3%;
+  background: #838ba2;
+  color: white;
+  height:160px;
+  position: relative;
+
+  h3.book-title {
+    padding: 2%;
+    margin-top: 0%;
+    background: #747d96;
+  }
+  div.details {
+    padding-left: 2%;
+    font-family: 'roboto';
+  }
+ 
+  div.author {
+    text-align: center;
+  }
+
+  div.tags {
+    position: absolute;
+    bottom: 2px;
+  }
+
+  div.tag-detail {
+    display: inline-block;
+    white-space: nowrap;
+    background : #e5e5e5;
+    color: #747d96;
+    border: 1px solid #747d96;
+    margin: 2px;
+    padding: 5px;
+  }
+}
