@@ -2,7 +2,7 @@ import React from 'react';
 
 export default class Book extends React.Component {
   renderTag(tag){
-    return <div className='tag-detail'> {tag} </div>
+    return <div key={tag} className='tag-detail'> {tag} </div>
   }
 
   render() {

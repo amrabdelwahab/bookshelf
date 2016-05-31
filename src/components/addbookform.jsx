@@ -4,7 +4,6 @@ export default class AddBookForm extends React.Component {
 
   createBook(event) {
     event.preventDefault();
-    console.log(Helpers.upload_file);
     var book = {
       title: this.refs.title.value,
       author: this.refs.author.value,
