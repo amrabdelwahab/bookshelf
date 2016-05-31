@@ -29,15 +29,17 @@ export default class App extends React.Component {
   }
 
   getResults() {
-    var book_ids = Object.keys(this.state.books);
+    const { books } = this.state;
+
+    var book_ids = Object.keys(books);
     var keyword = Helpers.prepareForSearch(this.state.keyword);
     var result_ids = book_ids.filter(
       book_id =>
-        Helpers.prepareForSearch(this.state.books[book_id].author)
+        Helpers.prepareForSearch(books[book_id].author)
           .includes(keyword) ||
-        Helpers.prepareForSearch(this.state.books[book_id].title)
+        Helpers.prepareForSearch(books[book_id].title)
           .includes(keyword)  ||
-        this.state.books[book_id].tags.filter(
+        books[book_id].tags.filter(
           tag => 
             Helpers.prepareForSearch(tag)
               .includes(keyword)
@@ -46,7 +48,7 @@ export default class App extends React.Component {
 
     var results = {};
     for (var id of result_ids) {
-     results[id] = this.state.books[id];
+     results[id] = books[id];
     }
     
     return results;
