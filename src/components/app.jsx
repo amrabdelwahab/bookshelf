@@ -60,7 +60,7 @@ export default class App extends React.Component {
       <Header/>
        <div className='main-panel'>
         <Searchbar updateKeyword={this.updateKeyword.bind(this)}/>
-        <Bookshelf saveBook={this.saveBook.bind(this)} books={this.getResults()}/>
+        <Bookshelf saveBook={this.saveBook.bind(this)} perPage={11} books={this.getResults()}/>
       </div>
      </div>
       )
