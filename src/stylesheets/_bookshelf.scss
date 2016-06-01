@@ -4,7 +4,16 @@ ul.bookshelf {
   border: 1px solid #ccc;
   padding: 3% 3% 0 3%  ;
 }
-
+div.dropDiv {
+  @include span-columns(12 of 12);
+  overflow: auto;
+}
+div.dropActive {
+  background: #eee;
+}
+div.dropReject {
+  background: #ffdddd;
+}
 ul.pagination {
     padding: 0px;
     margin: 0px;
