@@ -2,7 +2,7 @@ import React from 'react';
 import ReactPaginate from 'react-paginate';
 
 import Book from './book.jsx';
-import AddBookForm from './addbookform.jsx'
+import AddBookHint from './addbookhint.jsx';
 
 export default class Bookshelf extends React.Component {
   constructor(props) {
@@ -24,6 +24,7 @@ export default class Bookshelf extends React.Component {
     return(results);
   }
 
+  
   componentDidMount() {
     var books_ids = Object.keys(this.props.books);
     this.setState({
@@ -63,9 +64,9 @@ export default class Bookshelf extends React.Component {
 
   render() {
     return (
-      <div>
-        <ul className='bookshelf'>
-          <AddBookForm {...this.props}/>
+      <span className='bookshelf'>
+        <AddBookHint/>   
+        <ul>
           {
             Object.
               keys(this.loadBooks(this.props.books)).
@@ -84,7 +85,9 @@ export default class Bookshelf extends React.Component {
                          activeClassName={"active"}
                          initialSelected={0}
                          forceSelected={this.state.page} />
-      </div>
+                         
+      
+      </span>
     )
   }
 }
