@@ -11,3 +11,4 @@ Then run the server using:
 ```
 npm start 
 ```
+Finally, go to your browser and open http://localhost:8080 
