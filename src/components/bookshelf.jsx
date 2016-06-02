@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
 
-import Dropzone from 'react-dropzone';
-
 import Book from './book.jsx';
-import AddBookForm from './addbookform.jsx'
+import AddBookHint from './addbookhint.jsx';
 
 export default class Bookshelf extends React.Component {
   constructor(props) {
@@ -26,14 +24,7 @@ export default class Bookshelf extends React.Component {
     return(results);
   }
 
-  onDropAccepted(files) {
-      console.log('Received files: ', files);
-      <img src={files[0].preview} />
-    }
-  onDropRejected() {
-    alert('Please make sure you upload one pdf a time');
-  }
-
+  
   componentDidMount() {
     var books_ids = Object.keys(this.props.books);
     this.setState({
@@ -73,17 +64,9 @@ export default class Bookshelf extends React.Component {
 
   render() {
     return (
-      <Dropzone accept={'application/pdf'}
-                className='dropDiv'
-                activeClassName='dropActive'
-                rejectClassName='dropReject' 
-                disableClick={true} 
-                multiple={false} 
-                onDropAccepted={this.onDropAccepted}
-                onDropRejected={this.onDropRejected}>
-      
-        <ul className='bookshelf'>
-          <AddBookForm {...this.props}/>
+      <span className='bookshelf'>
+        <AddBookHint/>   
+        <ul>
           {
             Object.
               keys(this.loadBooks(this.props.books)).
@@ -104,7 +87,7 @@ export default class Bookshelf extends React.Component {
                          forceSelected={this.state.page} />
                          
       
-      </Dropzone>
+      </span>
     )
   }
 }

@@ -6,8 +6,9 @@
 @import "header";
 @import "searchbar";
 @import "bookshelf";
-@import "addbookform";
+@import "addbookhint";
 @import "book";
+@import "bookspanel";
 
 @include font-face('Merriweather', '/src/fonts/Merriweather-Regular')
 @include font-face('Roboto', '/src/fonts/Roboto-Regular')

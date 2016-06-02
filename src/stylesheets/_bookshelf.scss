@@ -1,18 +1,9 @@
-ul.bookshelf {
+span.bookshelf {
   margin:0px;
   @include span-columns(12 of 12);
   border: 1px solid #ccc;
-  padding: 3% 3% 0 3%  ;
-}
-div.dropDiv {
-  @include span-columns(12 of 12);
-  overflow: auto;
-}
-div.dropActive {
-  background: #eee;
-}
-div.dropReject {
-  background: #ffdddd;
+  padding: 0 3% 0 3%  ;
+  min-height: 400px;
 }
 ul.pagination {
     padding: 0px;
@@ -29,7 +20,7 @@ ul.pagination {
     color: white;
   }
     li.disabled, .active{
-      color: black;
+      color: #747d96;
       a {
         cursor: default;
       }

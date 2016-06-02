@@ -3,7 +3,7 @@ import React from 'react';
 import Helpers from '../helpers/main.js'
 
 import Header from './header.jsx';
-import Bookshelf from './bookshelf.jsx';
+import BooksPanel from './bookspanel.jsx';
 import Searchbar from './searchbar.jsx';
 
 export default class App extends React.Component {
@@ -60,7 +60,7 @@ export default class App extends React.Component {
       <Header/>
        <div className='main-panel'>
         <Searchbar updateKeyword={this.updateKeyword.bind(this)}/>
-        <Bookshelf saveBook={this.saveBook.bind(this)} perPage={11} books={this.getResults()}/>
+        <BooksPanel saveBook={this.saveBook.bind(this)} perPage={11} books={this.getResults()}/>
       </div>
      </div>
       )

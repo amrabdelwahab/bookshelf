@@ -1,0 +1,10 @@
+div.dropDiv {
+  @include span-columns(12 of 12);
+  overflow: auto;
+}
+div.dropActive {
+  background: #eee;
+}
+div.dropReject {
+  background: #ffdddd;
+}
