@@ -3,27 +3,38 @@ import Dropzone from 'react-dropzone';
 require('pdfjs-dist/build/pdf.combined');
 
 import MetadataParser from '../helpers/metadataParser.js';
+import GoogleDrive from '../helpers/googleDrive.js'
 
 import Bookshelf from './bookshelf.jsx';
+import Loading from './loading.jsx';
 
 export default class BooksPanel extends React.Component {
   
+  constructor() {
+    super();
+
+    this.state = {
+      uploadInProgress: false
+    };
+  }
+
   onDropRejected() {
     alert('Please make sure you upload one pdf a time');
   }
 
   onDropAccepted(files) {
       var file = files[0];
+      this.setState({uploadInProgress: true});
       this.upload(file).then(this.onFileUploaded.bind(this));
     }
 
   upload(file){
+    var _this = this;
     return new Promise(
       function(resolve, reject) { 
-        
-        //Here the upload to Gdrive happens and resolves in case of success
-
-        resolve({ file, path: 'test' });
+        var googleDrive = new GoogleDrive();
+        googleDrive.uploadFile(file)
+          .then(resp => resolve({ file, path: resp }))
       }
     );
   }
@@ -49,6 +60,7 @@ export default class BooksPanel extends React.Component {
 
     bookInfo['file_path'] = this.state.file_path;
     this.props.saveBook(bookInfo);
+    this.setState({uploadInProgress: false});
   }
 
 
@@ -58,20 +70,28 @@ export default class BooksPanel extends React.Component {
     this.readPdf(response.file);
   }
 
-  
+  toggleLoadingGif(){
+    if(this.uploadInProgress){
+    }
+  }
 
   render() {
-    return (
-      <Dropzone accept={'application/pdf'}
-                className='dropDiv'
-                activeClassName='dropActive'
-                rejectClassName='dropReject' 
-                disableClick={true} 
-                multiple={false} 
-                onDropAccepted={this.onDropAccepted.bind(this)}
-                onDropRejected={this.onDropRejected}>
-        <Bookshelf {...this.props} />
-      </Dropzone>
-    );
+    if(this.state.uploadInProgress){ 
+      return <Loading/>
+    }
+    else {
+      return (
+        <Dropzone accept={'application/pdf'}
+                  className='dropDiv'
+                  activeClassName='dropActive'
+                  rejectClassName='dropReject' 
+                  disableClick={true} 
+                  multiple={false} 
+                  onDropAccepted={this.onDropAccepted.bind(this)}
+                  onDropRejected={this.onDropRejected}>
+          <Bookshelf {...this.props} />
+        </Dropzone>
+      );
+    }
   }
 }
