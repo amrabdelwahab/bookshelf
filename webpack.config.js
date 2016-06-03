@@ -17,11 +17,13 @@ module.exports = {
         test: /\.scss$/,
         loaders: ['style', 'css', 'sass']
       },
-      { test: /\.png$/, loader: 'file-loader?limit=100000' },
+      { test: /\.png$/, loader: "file-loader" },
+      { test: /\.gif$/, loader: "file-loader" },
+      { test: /\.jpg$/, loader: "file-loader" },
       { test: /\.woff(2)?(\?v=.+)?$/, loader: "file-loader?limit=10000&mimetype=application/font-woff" },
       { test: /\.(ttf|eot|svg)(\?v=.+)?$/, loader: 'file-loader' },
       { test: /\.html$/, loader: 'html' },
-      { test: /\.json$/, loader: 'json' }
+      { test: /\.json$/, loader: 'json-loader' }
       
     ]
   },
