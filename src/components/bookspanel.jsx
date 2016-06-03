@@ -42,7 +42,6 @@ export default class BooksPanel extends React.Component {
               resolve({ file, remote_id: resp.result.id });
             }
             else {
-              console.log('rejecte');
               reject(resp);
             }
           },
@@ -83,7 +82,6 @@ export default class BooksPanel extends React.Component {
 
   onFileUploadFailed(response){
     this.setState({uploadInProgress: false});
-    console.log();
     alert("Upload to google drive failed:\n" + response.result.error.message);
   }
 
