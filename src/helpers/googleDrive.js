@@ -5,6 +5,7 @@ export default class GoogleDrive {
     this.delimiter = "\r\n--" + this.boundary + "\r\n";
     this.close_delim = "\r\n--" + this.boundary + "--";
 
+    this.app_settings = require('../app_settings.json');
   }
 
   loadBinaryString(file) {
@@ -18,6 +19,10 @@ export default class GoogleDrive {
       'title': file.name,
       'mimeType': contentType
     };
+
+    if(this.app_settings.drive_folder_id)
+      metadata['parents'] = [{"id":this.app_settings.drive_folder_id}];
+    
     return metadata;
   }
   prepareMultipartRequestBody(file) {
