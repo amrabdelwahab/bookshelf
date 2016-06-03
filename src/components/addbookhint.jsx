@@ -1,5 +1,4 @@
 import React from 'react';
-import Helpers from '../helpers/main.js'
 
 export default class AddBookHint extends React.Component {
 

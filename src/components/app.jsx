@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Helpers from '../helpers/main.js'
+import Helpers from '../actions/main.js'
+import GoogleApiLoader from '../actions/googleApiLoader.js';
 
 import Header from './header.jsx';
 import BooksPanel from './bookspanel.jsx';
 import Searchbar from './searchbar.jsx';
 import Loading from './loading.jsx';
 
-import GoogleApiLoader from '../helpers/googleApiLoader.js';
 export default class App extends React.Component {
 
   constructor() {

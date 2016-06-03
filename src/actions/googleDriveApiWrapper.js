@@ -1,4 +1,4 @@
-export default class GoogleDrive {
+export default class GoogleDriveApiWrapper {
 
   constructor(){
     this.boundary = '-------314159265358979323846';
@@ -59,7 +59,11 @@ export default class GoogleDrive {
           'headers': {
             'Content-Type': 'multipart/mixed; boundary="' + _this.boundary + '"'
           },
-          'body': multipartRequestBody}).then(resp => resolve(resp));
+          'body': multipartRequestBody})
+            .then(
+              resp => { resolve(resp); },
+              resp => { reject(resp);  }
+              );
         }
     );
       
