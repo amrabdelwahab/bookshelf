@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Helpers from '../actions/main.js'
+import Searcher from '../actions/searcher.js'
 import GoogleApiLoader from '../actions/googleApiLoader.js';
 
 import Header from './header.jsx';
@@ -54,30 +54,10 @@ export default class App extends React.Component {
   }
 
   getResults() {
-    const { books } = this.state;
-
-    var book_ids = Object.keys(books);
-    var keyword = Helpers.prepareForSearch(this.state.keyword);
-    var result_ids = book_ids.filter(
-      book_id =>
-      Helpers.prepareForSearch(books[book_id].author)
-      .includes(keyword) ||
-      Helpers.prepareForSearch(books[book_id].title)
-      .includes(keyword)  ||
-      books[book_id].tags.filter(
-        tag => 
-        Helpers.prepareForSearch(tag)
-        .includes(keyword)
-        ).length > 0
-      );
-
-    var results = {};
-    for (var id of result_ids) {
-     results[id] = books[id];
-   }
-
-   return results;
- }
+    const{ books } = this.state;
+    const{ keyword } = this.state;
+    return new Searcher(keyword, books).getResults();
+  }
 
  render() {
   if(this.state.finishedLoading){

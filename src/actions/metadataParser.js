@@ -5,7 +5,6 @@ export default class MetadataParser {
   }
 
   getBookInfo() {
-    console.log(this.metadata['dc:title']);
     return {
       title:  (typeof(this.metadata['dc:title']) === 'undefined') ?
          'Edit to add title' : this.metadata['dc:title'],
