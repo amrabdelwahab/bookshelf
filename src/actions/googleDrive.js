@@ -1,4 +1,4 @@
-export default class GoogleDrive {
+export default class GoogleDriveApiWrapper {
 
   constructor(){
     this.boundary = '-------314159265358979323846';

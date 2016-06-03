@@ -2,8 +2,8 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 require('pdfjs-dist/build/pdf.combined');
 
-import MetadataParser from '../helpers/metadataParser.js';
-import GoogleDrive from '../helpers/googleDrive.js'
+import MetadataParser from '../actions/metadataParser.js';
+import GoogleDriveApiWrapper from '../actions/googleDrive.js'
 
 import Bookshelf from './bookshelf.jsx';
 import Loading from './loading.jsx';
@@ -32,9 +32,9 @@ export default class BooksPanel extends React.Component {
     var _this = this;
     return new Promise(
       function(resolve, reject) { 
-        var googleDrive = new GoogleDrive();
+        var googleDrive = new GoogleDriveApiWrapper();
         googleDrive.uploadFile(file)
-          .then(resp => resolve({ file, path: resp }))
+          .then(resp => resolve({ file, path: resp.result.id }))
       }
     );
   }
@@ -58,15 +58,18 @@ export default class BooksPanel extends React.Component {
   onMetaDataExtracted(metadata) {
     var bookInfo = new MetadataParser(metadata).getBookInfo();
 
-    bookInfo['file_path'] = this.state.file_path;
+    bookInfo['remote_id'] = this.state.current_upload_remote_id;
     this.props.saveBook(bookInfo);
-    this.setState({uploadInProgress: false});
+    this.setState({
+      uploadInProgress: false,
+      current_upload_remote_id: ''
+    });
   }
 
 
 
   onFileUploaded(response){
-    this.setState({file_path: response.path});
+    this.setState({current_upload_remote_id: response.path});
     this.readPdf(response.file);
   }
 
