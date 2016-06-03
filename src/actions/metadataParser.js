@@ -5,9 +5,12 @@ export default class MetadataParser {
   }
 
   getBookInfo() {
+    console.log(this.metadata['dc:title']);
     return {
-      title: this.metadata['dc:title'],
-      author: this.metadata['dc:creator'],
+      title:  (typeof(this.metadata['dc:title']) === 'undefined') ?
+         'Edit to add title' : this.metadata['dc:title'],
+      author: (typeof(this.metadata['dc:creator']) === 'undefined') ?
+         'Edit to add author': this.metadata['dc:creator'],
       tags: ['ruby', 'design']
     }
   }

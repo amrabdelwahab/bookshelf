@@ -3,7 +3,7 @@ import Dropzone from 'react-dropzone';
 require('pdfjs-dist/build/pdf.combined');
 
 import MetadataParser from '../actions/metadataParser.js';
-import GoogleDriveApiWrapper from '../actions/googleDrive.js'
+import GoogleDriveApiWrapper from '../actions/googleDriveApiWrapper.js'
 
 import Bookshelf from './bookshelf.jsx';
 import Loading from './loading.jsx';
@@ -25,7 +25,9 @@ export default class BooksPanel extends React.Component {
   onDropAccepted(files) {
       var file = files[0];
       this.setState({uploadInProgress: true});
-      this.upload(file).then(this.onFileUploaded.bind(this));
+      this.upload(file)
+        .then(this.onFileUploaded.bind(this),
+              this.onFileUploadFailed.bind(this));
     }
 
   upload(file){
@@ -34,7 +36,20 @@ export default class BooksPanel extends React.Component {
       function(resolve, reject) { 
         var googleDrive = new GoogleDriveApiWrapper();
         googleDrive.uploadFile(file)
-          .then(resp => resolve({ file, path: resp.result.id }))
+          .then(
+            resp => {
+            if(resp.status == 200){
+              resolve({ file, remote_id: resp.result.id });
+            }
+            else {
+              console.log('rejecte');
+              reject(resp);
+            }
+          },
+          resp => {
+            reject(resp);
+          }
+        )
       }
     );
   }
@@ -66,10 +81,14 @@ export default class BooksPanel extends React.Component {
     });
   }
 
-
+  onFileUploadFailed(response){
+    this.setState({uploadInProgress: false});
+    console.log();
+    alert("Upload to google drive failed:\n" + response.result.error.message);
+  }
 
   onFileUploaded(response){
-    this.setState({current_upload_remote_id: response.path});
+    this.setState({current_upload_remote_id: response.remote_id});
     this.readPdf(response.file);
   }
 

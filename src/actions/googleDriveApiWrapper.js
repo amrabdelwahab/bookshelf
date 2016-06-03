@@ -59,7 +59,11 @@ export default class GoogleDriveApiWrapper {
           'headers': {
             'Content-Type': 'multipart/mixed; boundary="' + _this.boundary + '"'
           },
-          'body': multipartRequestBody}).then(resp => resolve(resp));
+          'body': multipartRequestBody})
+            .then(
+              resp => { resolve(resp); },
+              resp => { reject(resp);  }
+              );
         }
     );
       
