@@ -1,0 +1,51 @@
+div.login-form {
+  position: absolute;
+  height: 50%;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  margin-top: -15%;
+  margin-left: -25%;
+  border: 1px solid #ccc;
+  h1 {
+    font-size:50px;
+    color: #747d96;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin-top:0px;
+    padding: 2%;
+  }
+
+  button.login {
+    color: white;
+    border-radius: 5px;
+    border: thin solid #888;
+    box-shadow: 1px 1px 1px grey;
+    white-space: nowrap;
+    font-size: 40px;
+    background-color: #4885ed;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -5%;
+    margin-left: -21%;
+    width: 40%;
+    cursor: pointer;
+
+    
+    span.login-icon {
+      float: left;
+      padding: 2%;
+      border-right: 1px solid black;
+    }
+    span.login-text {
+      padding: 2%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -7.7%;
+      margin-left: -36%;
+    }
+  }
+}

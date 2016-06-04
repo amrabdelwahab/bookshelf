@@ -12,6 +12,12 @@ li.book {
     padding: 2%;
     margin-top: 0%;
     background: #747d96;
+    div.actions {
+      float: right;
+      span.action {
+        margin:10px;
+      }
+    }
   }
   div.details {
     padding-left: 2%;

@@ -3,6 +3,7 @@ import React from 'react';
 import Searcher from '../actions/searcher.js'
 import GoogleApiLoader from '../actions/googleApiLoader.js';
 
+import Login from './login.jsx';
 import Header from './header.jsx';
 import BooksPanel from './bookspanel.jsx';
 import Searchbar from './searchbar.jsx';
@@ -12,35 +13,40 @@ export default class App extends React.Component {
 
   constructor() {
     super();
-
+    this.googleApiLoader = new GoogleApiLoader();
     this.state = {
       books: {},
       tags: ['ruby', 'design'],
-      keyword:''
+      keyword:'',
+      finishedLoading: false,
+      isLoggedIn: false
     };
   }
 
+
+
   componentDidMount(){
-    var googleApiLoader = new GoogleApiLoader();
-    var _this = this;
-    googleApiLoader.authLoaded(function () {
-      googleApiLoader.getAuth2().currentUser.listen(function (user) {
-        _this.setState({finishedLoading: true});
-        
-        if (user.getBasicProfile()) {
-          var profile = user.getBasicProfile();
-          var profileProxy = {};
-          profileProxy.id = profile.getId();
-          profileProxy.name = profile.getName();
-          profileProxy.thumb = profile.getImageUrl();
-          profileProxy.email = profile.getEmail();
-          _this.setState({loggedInUser: profileProxy});
-        }
-        _this.setState({isLoggedIn: user.getBasicProfile() ? true : false});
+    this.googleApiLoader.authLoaded(this.finishedLoading.bind(this));
+  }  
+
+  finishedLoading() {
+    this.setState({finishedLoading: true});
+  }
+
+
+  updateLoggedIn(user) {
+    if (user.getBasicProfile()) {
+      var profile = user.getBasicProfile();
+      var profileProxy = {};
+      profileProxy.id = profile.getId();
+      profileProxy.name = profile.getName();
+      profileProxy.thumb = profile.getImageUrl();
+      profileProxy.email = profile.getEmail();
+      this.setState({
+        loggedInUser: profileProxy,
+        isLoggedIn: true,
       });
-
-
-    });
+    }
   }
 
   saveBook(book) {
@@ -59,6 +65,10 @@ export default class App extends React.Component {
     return new Searcher(keyword, books).getResults();
   }
 
+  getGoogleApiLoader() {
+    return this.googleApiLoader;
+  }
+
  render() {
   if(this.state.finishedLoading){
     if(this.state.isLoggedIn) {
@@ -75,7 +85,8 @@ export default class App extends React.Component {
        )
     }
     else {
-      return <div> sign in </div>
+      return <Login googleApiLoader={this.getGoogleApiLoader()}
+                    updateLoggedIn={this.updateLoggedIn.bind(this)}/>
     }
   }
   else {

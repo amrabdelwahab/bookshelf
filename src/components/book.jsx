@@ -8,7 +8,12 @@ export default class Book extends React.Component {
   render() {
     return (
       <li className='book'>
-        <h3 className='book-title'>{this.props.details.title}</h3>
+        <h3 className='book-title'>
+          {this.props.details.title}
+          <div className='actions'>
+            <span className='ion-gear-a'/>
+          </div>
+        </h3>
         <div className='details'>
           <div className='author'>{this.props.details.author}</div>
           <div className='tags'>
