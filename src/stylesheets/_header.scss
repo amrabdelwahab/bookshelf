@@ -4,9 +4,79 @@ div.header {
   margin-bottom: 1%;
   background: #f2f2f2;
   padding: 10px;
+  color: #a7abb8;
+  position: relative;
   
   h1 {
     font-weight: bold;
     text-align: center;
-    color: #a7abb8;  }
+      }
+
+  div.user-panel {
+    bottom: 0px;
+    right: 0px;
+    font-family: 'roboto';
+    position: absolute;
+    .dropbtn {
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      color: #a7abb8;
+      font-size: 19px;
+      min-width:400px;
+      .email{
+        padding: 3%;
+        position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -24px;
+      margin-left: -180px;
+      }
+      .down {
+        border-left: 1px solid #ccc;
+        float: right;
+        padding: 3%;
+      }
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #e5e5e5;
+        min-width: 400px;
+        text-align: center;
+        font-size: 19px;
+        right:0;
+        z-index: 1;
+        border-top: 1px solid #ccc;
+    }
+
+    .dropdown-content a {
+        color: #a7abb8;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f2f2f2;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #e5e5e5;
+    }
+
+  }
+
 }

@@ -19,7 +19,8 @@ export default class App extends React.Component {
       tags: ['ruby', 'design'],
       keyword:'',
       finishedLoading: false,
-      isLoggedIn: false
+      isLoggedIn: false,
+      loginInProgress: true
     };
   }
 
@@ -27,26 +28,38 @@ export default class App extends React.Component {
 
   componentDidMount(){
     this.googleApiLoader.authLoaded(this.finishedLoading.bind(this));
+
   }  
 
   finishedLoading() {
     this.setState({finishedLoading: true});
+    this.googleApiLoader.onLoggedInChange(this.updateLoggedIn.bind(this));
   }
 
 
   updateLoggedIn(user) {
-    if (user.getBasicProfile()) {
+    if (this.googleApiLoader.getAuth2().isSignedIn.get()){
       var profile = user.getBasicProfile();
-      var profileProxy = {};
-      profileProxy.id = profile.getId();
-      profileProxy.name = profile.getName();
-      profileProxy.thumb = profile.getImageUrl();
-      profileProxy.email = profile.getEmail();
       this.setState({
-        loggedInUser: profileProxy,
+        loggedInUser: profile,
         isLoggedIn: true,
       });
     }
+    else {
+      this.setState({
+        loggedInUser: {},
+        isLoggedIn: false,
+      });
+    }
+    this.finishLogin();
+  }
+
+  loginInProgress() {
+    this.setState({ loginInProgress: true });
+  }
+
+  finishLogin() {
+    this.setState({ loginInProgress: false});
   }
 
   saveBook(book) {
@@ -65,33 +78,43 @@ export default class App extends React.Component {
     return new Searcher(keyword, books).getResults();
   }
 
-  getGoogleApiLoader() {
-    return this.googleApiLoader;
-  }
-
- render() {
-  if(this.state.finishedLoading){
+  renderApp() {
     if(this.state.isLoggedIn) {
-      return (
-       <div className='app'>
-       <Header user={this.state.loggedInUser} />
-       <div className='main-panel'>
-       <Searchbar updateKeyword={this.updateKeyword.bind(this)}/>
-       <BooksPanel saveBook={this.saveBook.bind(this)}
-                   perPage={11}
-                   books={this.getResults()}/>
-       </div>
-       </div>
-       )
+      return this.renderMainPanel();
     }
     else {
-      return <Login googleApiLoader={this.getGoogleApiLoader()}
-                    updateLoggedIn={this.updateLoggedIn.bind(this)}/>
+      return <Login googleApiLoader={this.googleApiLoader}
+                    updateLoggedIn={this.updateLoggedIn.bind(this)}
+                    loginInProgress={this.state.loginInProgress}/>
     }
   }
-  else {
-    return <Loading/>
+
+  logout(e){
+    e.preventDefault();
+    this.googleApiLoader.signOut();
   }
-}
+
+  renderMainPanel() {
+    return (
+    <div className='app'>
+         <Header user={this.state.loggedInUser} logout={this.logout.bind(this)} />
+         <div className='main-panel'>
+           <Searchbar updateKeyword={this.updateKeyword.bind(this)}/>
+           <BooksPanel saveBook={this.saveBook.bind(this)}
+                       perPage={11}
+                       books={this.getResults()}/>
+         </div>
+       </div>
+    );
+  }
+
+  render() {
+    if(this.state.finishedLoading){
+      return this.renderApp()
+    }
+    else {
+      return <Loading/>
+    }
+  }
 }
 

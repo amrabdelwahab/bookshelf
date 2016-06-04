@@ -6,43 +6,13 @@ import Loading from './loading.jsx';
 
 export default class Login extends React.Component {
   
-  constructor() {
-    super();
-    this.state = { loginInProgress: false };
-  }
-  
-  componentDidMount(){
-    const { googleApiLoader } = this.props;
-    this.updateLoggedIn();
-  }
-
-  updateLoggedIn() {
-    this.loginInProgress();
-    var googleApiLoader = this.props.googleApiLoader;
-    var _this = this;
-    googleApiLoader
-      .getAuth2()
-      .currentUser
-      .listen(_this.finishLogin.bind(_this));
-  }
-
-  finishLogin(user) {
-    this.setState({ loginInProgress: false});
-    this.props.updateLoggedIn(user);
-  }
-  
-  loginInProgress() {
-    this.setState({ loginInProgress: true });
-  }
-
   signin() {
     var googleApiLoader = this.props.googleApiLoader;
     googleApiLoader.signIn();
-    this.updateLoggedIn();
   }
 
   render() {
-    if(this.state.loginInProgress){
+    if(this.props.loginInProgress){
       return <Loading />
     }
     else {

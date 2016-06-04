@@ -72,6 +72,11 @@ export default class GoogleApiLoader {
     });
   }
 
+  signOut() {
+    this.getAuth2().signOut();
+  }
+
+
   loadClients() {
     this.loadAuth2();
     this.loadSignin2();
@@ -102,4 +107,11 @@ export default class GoogleApiLoader {
       gapi.client.load(client.name, client.version, this.clientLoaded.bind(this));
     }
   }
+  onLoggedInChange(callback) {
+    this
+      .getAuth2()
+      .currentUser
+      .listen(callback);
+  }
+  
 }
