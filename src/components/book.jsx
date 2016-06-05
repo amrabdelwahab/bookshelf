@@ -3,7 +3,6 @@ import InlineEdit from 'react-edit-inline';
 
 var ReactTags = require('react-tag-input').WithContext;
 
-
 export default class Book extends React.Component {
 
   constructor() {
@@ -102,7 +101,7 @@ export default class Book extends React.Component {
               change={this.titleChanged.bind(this)}
             />
           <div className='actions'>
-            <span className='ion-gear-a'/>
+            <a href={this.props.details.download_link} className='download'><span className='ion-android-download'/></a>
           </div>
         </h3>
         <div className='details'>

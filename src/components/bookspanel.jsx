@@ -26,8 +26,6 @@ export default class BooksPanel extends React.Component {
       var file = files[0];
       this.setState({uploadInProgress: true});
       this.upload(file)
-        .then(this.onFileUploaded.bind(this),
-              this.onFileUploadFailed.bind(this));
     }
 
   upload(file){
@@ -35,22 +33,19 @@ export default class BooksPanel extends React.Component {
     return new Promise(
       function(resolve, reject) { 
         var googleDrive = new GoogleDriveApiWrapper();
-        googleDrive.uploadFile(file)
-          .then(
-            resp => {
-            if(resp.status == 200){
-              resolve({ file, remote_id: resp.result.id });
-            }
-            else {
-              reject(resp);
-            }
-          },
-          resp => {
-            reject(resp);
-          }
-        )
+        googleDrive.uploadFile(file, _this.fileUploadDone.bind(_this), _this.onFileUploadFailed.bind(_this))
+          
       }
     );
+  }
+
+  fileUploadDone(resp, file) {
+    if(resp.status == 200){
+      this.onFileUploaded({ file, download_link: resp.result.webContentLink });
+    }
+    else {
+      this.onFileUploadFailed(resp);
+    }
   }
 
   readPdf(file) {
@@ -72,11 +67,11 @@ export default class BooksPanel extends React.Component {
   onMetaDataExtracted(metadata) {
     var bookInfo = new MetadataParser(metadata).getBookInfo();
 
-    bookInfo['remote_id'] = this.state.current_upload_remote_id;
+    bookInfo['download_link'] = this.state.current_upload_download_link;
     this.props.saveBook(bookInfo);
     this.setState({
       uploadInProgress: false,
-      current_upload_remote_id: ''
+      current_upload_download_link: ''
     });
   }
 
@@ -86,7 +81,7 @@ export default class BooksPanel extends React.Component {
   }
 
   onFileUploaded(response){
-    this.setState({current_upload_remote_id: response.remote_id});
+    this.setState({current_upload_download_link: response.download_link});
     this.readPdf(response.file);
   }
 

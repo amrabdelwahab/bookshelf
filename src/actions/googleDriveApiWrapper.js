@@ -9,8 +9,12 @@ export default class GoogleDriveApiWrapper {
   }
 
   loadBinaryString(file) {
-    var reader = new FileReader();
-    return reader.readAsBinaryString(file);
+    
+    var contentType = fileData.type || 'application/octet-stream';
+    var metadata = {
+      'title': fileData.fileName,
+      'mimeType': contentType
+    };
   }
 
   prepareMetadata(file) {
@@ -25,10 +29,9 @@ export default class GoogleDriveApiWrapper {
     
     return metadata;
   }
-  prepareMultipartRequestBody(file) {
+  prepareMultipartRequestBody(file, fileBinary) {
 
     var metadata = this.prepareMetadata(file);
-    var fileBinary = this.loadBinaryString(file);
     var base64Data = btoa(fileBinary);
 
     var multipartRequestBody =
@@ -45,14 +48,13 @@ export default class GoogleDriveApiWrapper {
 
   }
 
-  uploadFile(file) {
-
-    var multipartRequestBody = this.prepareMultipartRequestBody(file);
-    
+  uploadFile(file, callback, failureCallback) {
     var _this = this;
-    return new Promise(
-      function(resolve, reject) { 
-        var request = gapi.client.request({
+    var reader = new FileReader();
+    reader.readAsBinaryString(file);
+    reader.onload = (e)=> {
+      var multipartRequestBody = this.prepareMultipartRequestBody(file, reader.result);
+      var request = gapi.client.request({
           'path': '/upload/drive/v2/files',
           'method': 'POST',
           'params': {'uploadType': 'multipart'},
@@ -60,12 +62,9 @@ export default class GoogleDriveApiWrapper {
             'Content-Type': 'multipart/mixed; boundary="' + _this.boundary + '"'
           },
           'body': multipartRequestBody })
-        .then(
-          resp => { resolve(resp); },
-          resp => { reject(resp);  }
-          );
-      }
-      );
+        .then((resp)=>callback(resp, file), failureCallback);
+          
+    }
 
   }
 
