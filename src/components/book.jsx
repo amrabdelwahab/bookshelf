@@ -1,4 +1,6 @@
 import React from 'react';
+import InlineEdit from 'react-edit-inline';
+
 var ReactTags = require('react-tag-input').WithContext;
 
 
@@ -80,20 +82,37 @@ export default class Book extends React.Component {
 
   startEditTags() {
     this.setState({tagsEditInProgress: true});
-    //this.addBlurListener();
+  }
+
+  titleChanged(data) {
+    this.props.updateTitle(data['title'], this.props.bookId);
+  }
+
+  authorChanged(data) {
+    this.props.updateAuthor(data['author'], this.props.bookId);
   }
 
   render() {
     return (
       <li className='book'>
         <h3 className='book-title'>
-          {this.props.details.title}
+        <InlineEdit
+              text={this.props.details.title}
+              paramName="title"
+              change={this.titleChanged.bind(this)}
+            />
           <div className='actions'>
             <span className='ion-gear-a'/>
           </div>
         </h3>
         <div className='details'>
-          <div className='author'>{this.props.details.author}</div>
+          <div className='author'>
+          <InlineEdit
+              text={this.props.details.author}
+              paramName="author"
+              change={this.authorChanged.bind(this)}
+            />
+          </div>
           {this.renderTags()}
         </div>
       </li>
