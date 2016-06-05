@@ -7,6 +7,7 @@ import Loading from './loading.jsx';
 export default class Login extends React.Component {
   
   signin() {
+    this.props.startAuthentication();
     var googleApiLoader = this.props.googleApiLoader;
     googleApiLoader.signIn();
   }

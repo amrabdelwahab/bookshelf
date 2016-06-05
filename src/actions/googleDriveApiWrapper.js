@@ -26,27 +26,27 @@ export default class GoogleDriveApiWrapper {
     return metadata;
   }
   prepareMultipartRequestBody(file) {
-    
+
     var metadata = this.prepareMetadata(file);
     var fileBinary = this.loadBinaryString(file);
     var base64Data = btoa(fileBinary);
 
     var multipartRequestBody =
-      this.delimiter +
-      'Content-Type: application/json\r\n\r\n' +
-      JSON.stringify(metadata) +
-      this.delimiter +
-      'Content-Type: ' + metadata['mimeType'] + '\r\n' +
-      'Content-Transfer-Encoding: base64\r\n' +
-      '\r\n' +
-      base64Data +
-      this.close_delim;
+    this.delimiter +
+    'Content-Type: application/json\r\n\r\n' +
+    JSON.stringify(metadata) +
+    this.delimiter +
+    'Content-Type: ' + metadata['mimeType'] + '\r\n' +
+    'Content-Transfer-Encoding: base64\r\n' +
+    '\r\n' +
+    base64Data +
+    this.close_delim;
     return multipartRequestBody;
 
   }
 
   uploadFile(file) {
-    
+
     var multipartRequestBody = this.prepareMultipartRequestBody(file);
     
     var _this = this;
@@ -59,14 +59,14 @@ export default class GoogleDriveApiWrapper {
           'headers': {
             'Content-Type': 'multipart/mixed; boundary="' + _this.boundary + '"'
           },
-          'body': multipartRequestBody})
-            .then(
-              resp => { resolve(resp); },
-              resp => { reject(resp);  }
-              );
-        }
-    );
-      
+          'body': multipartRequestBody })
+        .then(
+          resp => { resolve(resp); },
+          resp => { reject(resp);  }
+          );
+      }
+      );
+
   }
 
 }

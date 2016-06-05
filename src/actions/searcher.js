@@ -1,8 +1,10 @@
 export default class Searcher {
+
   constructor(keyword, books) {
     this.keyword = this.prepareForSearch(keyword);
     this.books = books;
   }
+  
   getBooksIds() {
     return Object.keys(this.books);
   }
@@ -28,7 +30,8 @@ export default class Searcher {
   }
 
   keywordInTags(tags) {
-    return tags.filter(tag => this.keywordInWord(tag)).length > 0;
+    var tagsTexts = tags.map(tag=> tag.text);
+    return tagsTexts.filter(tag => this.keywordInWord(tag)).length > 0;
   }
 
   keywordInBook(book) {

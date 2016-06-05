@@ -59,7 +59,12 @@ export default class Bookshelf extends React.Component {
 
 
   renderBook(key){
-    return <Book key={key} details={this.props.books[key]} />
+    return <Book key={key}
+                 bookId={key}
+                 updateTags={this.props.updateTags.bind(this)}
+                 suggestions={this.props.suggestions}
+                 details={this.props.books[key]}
+                 addSuggestions={this.props.addSuggestions.bind(this)} />
   }
 
   render() {
