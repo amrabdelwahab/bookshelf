@@ -12,14 +12,6 @@ export default class Book extends React.Component {
     }
   }
 
-  componentDidMount() {
-    document.keydown(
-      (e)=> {
-        if(e.which == 8)
-          e.preventDefault();
-      });
-  }
-
   componentDidUpdate() {
     if(this.state.tagsEditInProgress) {
       var element = document.querySelector('.tagInputClass');
