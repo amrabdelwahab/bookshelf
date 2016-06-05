@@ -12,11 +12,26 @@ export default class Book extends React.Component {
     }
   }
 
+  componentDidMount() {
+    document.keydown(
+      (e)=> {
+        if(e.which == 8)
+          e.preventDefault();
+      });
+  }
+
   componentDidUpdate() {
     if(this.state.tagsEditInProgress) {
       var element = document.querySelector('.tagInputClass');
       var  textInput = element.querySelector('input[type=text]');
       textInput.addEventListener('blur', this.finishEditTags.bind(this));
+      textInput.addEventListener('keyup', this.onEnterClicked.bind(this));
+    }
+  }
+
+  onEnterClicked(e){
+    if(e.which == 27){
+      this.finishEditTags();
     }
   }
 
