@@ -26,12 +26,23 @@ export default class App extends React.Component {
     };
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem('books', JSON.stringify(this.state.books));
+    localStorage.setItem('tagsSuggestions', JSON.stringify(this.state.tagsSuggestions))
+  }
+
 /*
 After the component mounts add the method finished loading as a callback 
 to authloaded in the google api loader instance
 */
   componentDidMount(){
     this.state.googleApiLoader.authLoaded(this.finishedLoading.bind(this));
+    var localStorageBooks = localStorage.getItem('books');
+    if(localStorageBooks)
+      this.setState({ books: JSON.parse(localStorageBooks) }); 
+    var localStorageSuggestions = localStorage.getItem('tagsSuggestions');
+    if(localStorageSuggestions) 
+      this.tagsSuggestions({ books: JSON.parse(localStorageSuggestions) });
   } 
 
 /*
