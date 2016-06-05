@@ -17,11 +17,11 @@ export default class Book extends React.Component {
       var element = document.querySelector('.tagInputClass');
       var  textInput = element.querySelector('input[type=text]');
       textInput.addEventListener('blur', this.finishEditTags.bind(this));
-      textInput.addEventListener('keyup', this.onEnterClicked.bind(this));
+      textInput.addEventListener('keyup', this.onEscClicked.bind(this));
     }
   }
 
-  onEnterClicked(e){
+  onEscClicked(e){
     if(e.which == 27){
       this.finishEditTags();
     }
