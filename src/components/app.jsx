@@ -42,7 +42,7 @@ to authloaded in the google api loader instance
       this.setState({ books: JSON.parse(localStorageBooks) }); 
     var localStorageSuggestions = localStorage.getItem('tagsSuggestions');
     if(localStorageSuggestions) 
-      this.tagsSuggestions({ books: JSON.parse(localStorageSuggestions) });
+      this.setState({ tagsSuggestions: JSON.parse(localStorageSuggestions) });
   } 
 
 /*
