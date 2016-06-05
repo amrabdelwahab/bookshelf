@@ -7,9 +7,10 @@ export default class GoogleApiLoader {
     this.auth2Loaded = false;
     this.auth2;
 
+    this.gapiLoaded(this.loadClients.bind(this));
+
     if (this.app_settings.scopes.indexOf('profile') === -1)
       this.app_settings.scopes.push('profile');
-    this.gapiLoaded(this.loadClients.bind(this));
   }
 
   clientLoaded() {

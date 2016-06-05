@@ -54,9 +54,16 @@ li.book {
   div.tags {
     position: absolute;
     bottom: 2px;
+    button.edit-tags {
+      color: #e5e5e5;
+      font-size: 20px;
+      padding:5px;
+      border: none;
+      background:none;
+    }
   }
 
-  div.tag-detail {
+  .tag-detail {
     display: inline-block;
     white-space: nowrap;
     background : #e5e5e5;
@@ -65,4 +72,34 @@ li.book {
     margin: 2px;
     padding: 5px;
   }
+  .removeClass {
+     color: #aaa;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  .suggestionsClass {
+    position: absolute;
+    ul {
+      list-style-type: none;
+      box-shadow: .05em .01em .5em rgba(0,0,0,.2);
+      background: white;
+      width: 200px;
+    }
+    li {
+      border-bottom: 1px solid #ddd;
+      padding: 5px 10px;
+      margin: 0;
+      color: black;
+    }
+    li mark {
+      text-decoration: underline;
+      background: none;
+      font-weight: 600;
+    }
+    ul li.active {
+      background: #b7cfe0;
+      cursor: pointer;
+    }
+  }
+
 }
