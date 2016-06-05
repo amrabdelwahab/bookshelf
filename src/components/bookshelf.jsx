@@ -35,14 +35,17 @@ export default class Bookshelf extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     var books_ids = Object.keys(nextProps.books);
-    let selected = 0;
-    let offset = Math.ceil(selected * this.props.perPage);
-    this.setState({ 
-      page: 0,
-      offset:0, 
-      pageNum: Math.ceil(books_ids.length / this.props.perPage),
-      data: this.loadBooks(nextProps.books) 
-    });
+    var old_books_ids = Object.keys(this.props.books);
+    if(books_ids.length != old_books_ids.length){
+      let selected = 0;
+      let offset = Math.ceil(selected * this.props.perPage);
+      this.setState({ 
+        page: 0,
+        offset:0, 
+        pageNum: Math.ceil(books_ids.length / this.props.perPage),
+        data: this.loadBooks(nextProps.books) 
+      });
+    }
   }
 
   handlePageClick(event) {
@@ -64,7 +67,10 @@ export default class Bookshelf extends React.Component {
                  updateTags={this.props.updateTags.bind(this)}
                  suggestions={this.props.suggestions}
                  details={this.props.books[key]}
-                 addSuggestions={this.props.addSuggestions.bind(this)} />
+                 addSuggestions={this.props.addSuggestions.bind(this)}
+                 updateTitle={this.props.updateTitle.bind(this)}
+                 updateAuthor={this.props.updateAuthor.bind(this)}
+                  />
   }
 
   render() {

@@ -118,6 +118,26 @@ it sets a callback to any change in the loggedin state
   }
 
 /*
+  This method updates title of a specific book
+*/
+  updateTitle(title, bookId) {
+    this.state.books[bookId].title = title;
+    this.setState({
+      books: this.state.books
+    })
+  }
+
+/*
+  This method updates author of a specific book
+*/
+  updateAuthor(author, bookId) {
+    this.state.books[bookId].author = author;
+    this.setState({
+      books: this.state.books
+    })
+  }
+
+/*
   This method updates tags of a specific book
 */
   updateTags(tags, bookId) {
@@ -145,6 +165,7 @@ it sets a callback to any change in the loggedin state
     this.state.books['book-' + id] = book;
     this.setState({books: this.state.books})
   }
+
 /*
   This method returns the app components to be rendered after loading
   is finished
@@ -173,7 +194,9 @@ it sets a callback to any change in the loggedin state
            <Searchbar updateKeyword={this.updateKeyword.bind(this)}/>
            <BooksPanel saveBook={this.saveBook.bind(this)}
                        updateTags={this.updateTags.bind(this)}
-                       perPage={11}
+                       updateTitle={this.updateTitle.bind(this)}
+                       updateAuthor={this.updateAuthor.bind(this)}
+                       perPage={7}
                        books={this.getResults()}
                        suggestions={this.state.tagsSuggestions}
                        addSuggestions={this.updateTagsSuggestions.bind(this)}/>
