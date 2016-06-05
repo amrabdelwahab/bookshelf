@@ -1,6 +1,29 @@
+$mobile-size:320px;
+$tablet-size:920px;
+$desktop-size:1500px;
+
+$mobile: new-breakpoint(min-width $mobile-size 4);
+$tablet: new-breakpoint(min-width $tablet-size 8);
+$desktop: new-breakpoint(min-width $desktop-size 12);
+
+@mixin omega-reset($nth) {
+  &:nth-child(#{$nth}) { margin-right: flex-gutter($grid-columns, $gutter); }
+  &:nth-child(#{$nth}+1) { clear: none }
+}
+
 li.book {
-  @include span-columns(3 of 12);
-  @include omega(4n);
+  @include media($mobile) {
+    @include span-columns(12 of  12);
+  }
+  @include media($tablet) {
+    @include span-columns(6 of  12);
+    @include omega(2n);
+  }
+  @include media($desktop) {
+    @include omega-reset(2n);
+    @include span-columns(3 of 12);
+    @include omega(4n);
+  }
   border: 1px solid #ccc;
   margin-bottom: 3%;
   background: #838ba2;
