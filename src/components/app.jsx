@@ -139,6 +139,16 @@ it sets a callback to any change in the loggedin state
   }
 
 /*
+  This method removes a specific book
+*/
+  removeBook(bookId) {
+    delete this.state.books[bookId] ;
+    this.setState({
+      books: this.state.books
+    });
+   }
+
+/*
   This method updates author of a specific book
 */
   updateAuthor(author, bookId) {
@@ -210,7 +220,8 @@ it sets a callback to any change in the loggedin state
                        perPage={7}
                        books={this.getResults()}
                        suggestions={this.state.tagsSuggestions}
-                       addSuggestions={this.updateTagsSuggestions.bind(this)}/>
+                       addSuggestions={this.updateTagsSuggestions.bind(this)}
+                       removeBook={this.removeBook.bind(this)}/>
          </div>
        </div>
     );

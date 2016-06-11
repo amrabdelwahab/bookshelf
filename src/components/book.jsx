@@ -98,6 +98,14 @@ export default class Book extends React.Component {
     this.props.updateAuthor(data['author'], this.props.bookId);
   }
 
+  deleteBook() {
+    const{ title } = this.props.details;
+    var confirm = window.confirm('Are you sure you want to delete ' + title + '?')
+    if(confirm) {
+      this.props.removeBook(this.props.bookId);
+    }
+  }
+
   render() {
     return (
       <li className='book'>
@@ -108,7 +116,8 @@ export default class Book extends React.Component {
               change={this.titleChanged.bind(this)}
             />
           <div className='actions'>
-            <a href={this.props.details.download_link} className='download'><span className='ion-android-download'/></a>
+            <a href={this.props.details.download_link} className=' ion-android-download download'/>
+            <a onClick={this.deleteBook.bind(this)}  className='delete ion-ios-trash'/>
           </div>
         </h3>
         <div className='details'>

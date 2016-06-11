@@ -70,6 +70,7 @@ export default class Bookshelf extends React.Component {
                  addSuggestions={this.props.addSuggestions.bind(this)}
                  updateTitle={this.props.updateTitle.bind(this)}
                  updateAuthor={this.props.updateAuthor.bind(this)}
+                 removeBook={this.props.removeBook.bind(this)}
                   />
   }
 

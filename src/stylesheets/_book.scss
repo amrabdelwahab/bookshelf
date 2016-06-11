@@ -37,15 +37,18 @@ li.book {
     background: #747d96;
     div.actions {
       float: right;
-      span.action {
+      color: white;
+      a.download {
         margin:10px;
+        color: white;
+      }
+      a.delete {
+        cursor: pointer;
       }
     }
   }
 
-  a.download {
-    color: white;
-  }
+  
   div.details {
     padding-left: 2%;
     font-family: 'roboto';
