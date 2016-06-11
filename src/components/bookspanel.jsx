@@ -30,13 +30,13 @@ export default class BooksPanel extends React.Component {
 
   upload(file){
     var _this = this;
-    return new Promise(
-      function(resolve, reject) { 
-        var googleDrive = new GoogleDriveApiWrapper();
-        googleDrive.uploadFile(file, _this.fileUploadDone.bind(_this), _this.onFileUploadFailed.bind(_this))
-          
-      }
-    );
+    var googleDrive = new GoogleDriveApiWrapper();
+    googleDrive
+      .uploadFile(
+        file,
+       _this.fileUploadDone.bind(_this),
+      _this.onFileUploadFailed.bind(_this)
+      );
   }
 
   fileUploadDone(resp, file) {
