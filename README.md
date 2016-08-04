@@ -1,4 +1,4 @@
-# bookshelf
+# bookshelf Attila
 A google drive bookshelf.
 
 # To run the project locally: #
